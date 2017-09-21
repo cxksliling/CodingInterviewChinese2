@@ -16,9 +16,21 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class Java19_RegularExpressionsMatching {
-    public boolean match(String reg, String text) {
+    private boolean match(String reg, String text) {
 
-        return false;
+        return text != null && reg != null && matchCore(reg, text);
+
+    }
+
+    private boolean matchCore(String reg, String text) {
+        if (reg.length()==0&&text.length()==0) {
+            return true;
+        }
+        if (text.length() == 0&&reg.length()!=0){
+            return false;
+        }
+
+
     }
 
     @Test
