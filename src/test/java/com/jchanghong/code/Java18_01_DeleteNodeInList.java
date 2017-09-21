@@ -17,7 +17,8 @@ import org.junit.Test;
 public class Java18_01_DeleteNodeInList {
 
     public boolean removeMe(LinkNode head, LinkNode me) {
-        if (head == null||me==null) {
+
+        if (head == null || me == null) {
             return false;
         }
         if (me.next == null) {
@@ -26,8 +27,7 @@ public class Java18_01_DeleteNodeInList {
                 pre = pre.next;
             }
             pre.next = null;
-        }
-        else {
+        } else {
             me.values = me.next.values;
             me.next = me.next.next;
         }
