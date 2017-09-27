@@ -14,14 +14,42 @@ package com.jchanghong.code;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.StringReader;
+import java.util.Scanner;
+
 public class Java20_NumericStrings {
     public boolean isNumber(String string) {
-        return false;
+        Scanner scanner = new Scanner(new StringReader(string));
+        int state = 0;
+
+        while (scanner.hasNext()) {
+            if (state == 0) {
+                if (scanner.hasNextDouble()) {
+                    state = 1;
+                    scanner.nextDouble();
+                } else {
+                    return false;
+                }
+            }
+
+            if (state == 1) {
+                if (scanner.hasNextByte()) {
+                    state = 0;
+                    char c = (char) scanner.nextByte();
+                    if (c != 'e'&&c !='E'){
+                        return false;
+                    }
+                    continue;
+                }
+            }
+        }
+        return true;
     }
 
     @Test
     public void test() throws Exception {
         Assert.assertTrue(isNumber("+100"));
+        Assert.assertFalse(isNumber("++100"));
         Assert.assertTrue(isNumber("5e2"));
         Assert.assertTrue(isNumber("3.1233"));
         Assert.assertFalse(isNumber("12e"));

@@ -16,6 +16,18 @@ import org.junit.Test;
 
 public class Java21_ReorderArray {
     public void reorderArray(int[] ints) {
+        int begin = 0;
+        int end = ints.length-1;
+        while (begin<end) {
+            while (begin<end&&(ints[begin]&0x1)!=0)
+                begin++;
+            while (begin<end&&(ints[end]&0x1)==0)
+                end--;
+
+            int temp = ints[begin];
+            ints[begin] = ints[end];
+            ints[end] = temp;
+        }
     }
 
     @Test

@@ -19,8 +19,26 @@ import org.junit.Test;
 
 public class Java22_KthNodeFromEnd {
     public LinkNode kthNode(LinkNode head, int k) {
+        if (head==null){
+            return null;
+        }
 
-        return null;
+        LinkNode left = head;
+        LinkNode right = head;
+        for (int i=0;i<k-1;i++) {
+            if (right.next!=null){
+                right = right.next;
+            }else {
+                return null;
+            }
+        }
+
+        while (right.next!=null){
+            right = right.next;
+            left = left.next;
+        }
+
+        return left;
     }
 
     @Test
