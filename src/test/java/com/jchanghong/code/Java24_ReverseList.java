@@ -17,8 +17,28 @@ import org.junit.Test;
 
 public class Java24_ReverseList {
     public LinkNode reverseList(LinkNode head) {
-        LinkNode result = head;
-        return result;
+        if(head==null){
+            return null;
+        }
+        if (head.next==null) {
+            return head;
+        }
+        LinkNode pre = head;
+        LinkNode now = pre.next;
+        LinkNode next = now.next;
+        now.next=pre;
+        pre.next=null;
+        while (next!=null) {
+
+            pre=now;
+            now=next;
+            next=next.next;
+
+            now.next = pre;
+        }
+        return now;
+
+
     }
 
     @Test

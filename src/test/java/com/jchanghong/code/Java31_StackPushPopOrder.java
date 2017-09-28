@@ -15,8 +15,32 @@ package com.jchanghong.code;
 import com.jchanghong.code.util.UtilAssert;
 import org.junit.Test;
 
+import java.util.Stack;
+
 public class Java31_StackPushPopOrder extends UtilAssert {
     boolean popOrder(int[] push, int[] pop) {
+        if (pop!=null&&push!=null&&pop.length!=0){
+            int pushPointer = 0;
+            int popPointer = 0;
+
+            Stack<Integer> stack = new Stack<>();
+
+            while (popPointer <pop.length){
+                while (stack.empty()||stack.peek()!=pop[popPointer]) {
+                    if (pushPointer == push.length){
+                        break;
+                    }
+                    stack.push(push[pushPointer]);
+                    pushPointer++;
+                }
+                if (stack.peek()!=pop[popPointer]) {
+                    break;
+                }
+                stack.pop();
+                popPointer++;
+            }
+            return stack.empty() && popPointer == pop.length;
+        }
         return false;
     }
 

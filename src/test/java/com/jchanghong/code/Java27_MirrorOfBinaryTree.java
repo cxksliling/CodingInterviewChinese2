@@ -18,7 +18,28 @@ import java.util.Arrays;
 
 public class Java27_MirrorOfBinaryTree {
     public TreeNode mirror(TreeNode head) {
-        return null;
+        if (head==null){
+            return null;
+        }
+        mirrorCore(head);
+        return head;
+    }
+    private void mirrorCore(TreeNode head) {
+        if (head==null) {
+            return;
+        }
+        if (head.left==null&&head.right==null){
+            return;
+        }
+        TreeNode temp = head.left;
+        head.left=head.right;
+        head.right=temp;
+        if (head.left!=null){
+            mirrorCore(head.left);
+        }
+        if (head.right!=null) {
+            mirrorCore(head.right);
+        }
     }
 
     @Test
